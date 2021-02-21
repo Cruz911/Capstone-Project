@@ -4,16 +4,18 @@ import SignIn from './components/LoginForms/SignIn';
 import {Route, BrowserRouter as Router} from 'react-router-dom'
 import SignUp from './components/LoginForms/SignUp';
 import Landing from './components/Landing';
+import Navbar from './components/Navbar';
 
 
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Navbar/>
+      {/* <Router>
         <Route exact path='/' component={Landing}/>
         <Route path='/signin' component={SignIn}/>
         <Route path='/signup' component={SignUp}/>
-        </Router>
+        </Router> */}
     </div>
   );
 }
