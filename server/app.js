@@ -1,6 +1,7 @@
 var express = require("express")
 const app = express()
 const bodyParser = require('body-parser')
+const logger = require('morgan');
 
 const db = require('./config/dbconfig');
 const patient = require('./routes/patient')
@@ -9,6 +10,7 @@ const health_worker = require('./routes/healthWorker')
 
 const PORT = 5000
 
+app.use(logger('dev'));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 

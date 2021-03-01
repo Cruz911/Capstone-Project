@@ -1,6 +1,6 @@
 var router = require('express').Router()
 var HealthWorker = require('../models/HealthWorker')
-
+const { worker_validation} = require('../validation')
 
 
   router.get('/', async (req, res)=>{
@@ -13,6 +13,10 @@ var HealthWorker = require('../models/HealthWorker')
 })
 
 router.post('/add',async (req, res)=>{
+
+  const {error} = worker_validation(req.body);
+  if(error) return res.status(400).send(error.details[0].message)
+
   let {first_name, last_name, job, clinic, contact_email, contact_number} = req.body
   try{
     const post = await HealthWorker.create({

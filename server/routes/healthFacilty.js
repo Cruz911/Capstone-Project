@@ -1,5 +1,7 @@
-var router = require('express').Router()
-var HealthFacility = require('../models/HealthFacility')
+const router = require('express').Router()
+const HealthFacility = require('../models/HealthFacility')
+const { clinic_validation} = require('../validation')
+
 
 router.get('/', async (req, res)=>{
     try{
@@ -11,6 +13,10 @@ router.get('/', async (req, res)=>{
 })
 
 router.post('/add',async (req, res)=>{
+
+  const {error} = clinic_validation(req.body);
+  if(error) return res.status(400).send(error.details[0].message)
+
     let {name, address, contact_email, contact_number} = req.body
     try{
     const post = await HealthFacility.create({
