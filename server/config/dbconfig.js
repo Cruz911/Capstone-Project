@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 module.exports = new Sequelize('capstone_db', 'postgres', 'root', {
     host: 'localhost',
     dialect: 'postgres',
-    operatorsAliases: false,
+    // operatorsAliases: false,
 
     pool: {
         max: 5,
